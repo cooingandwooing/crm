@@ -8,26 +8,83 @@
     <artifactId>security-all</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
-
-    <!-- Inherit defaults from Spring Boot -->
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.6.RELEASE</version>
-    </parent>
-    <!--设置第三方依赖库版本号-->
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <java.version>1.8</java.version>
+        <javadoc.version>3.0.0</javadoc.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+
+        <spring-boot.version>2.1.8.RELEASE</spring-boot.version>
+        <spring-cloud.version>Greenwich.SR1</spring-cloud.version>
+        <security.auth.version>2.3.5.RELEASE</security.auth.version>
+
+        <spring-boot-devtools.version>2.0.4.RELEASE</spring-boot-devtools.version>
+        <spring-boot-admin.version>2.1.4</spring-boot-admin.version>
+        <swagger.version>2.9.2</swagger.version>
+
+        <spring-cloud-sleuth.version>2.1.0.RELEASE</spring-cloud-sleuth.version>
+
+
+        <spring-social-config.version>1.1.6.RELEASE</spring-social-config.version>
+        <spring-social-core.version>1.1.6.RELEASE</spring-social-core.version>
+        <spring-social-security.version>1.1.6.RELEASE</spring-social-security.version>
+        <spring-social-web.version>1.1.6.RELEASE</spring-social-web.version>
+
+        <!-- 其它依赖 -->
+        <hibernate-validator.version>6.0.14.Final</hibernate-validator.version>
+        <mybatis.version>2.0.1</mybatis.version>
+        <druid.version>1.1.20</druid.version>
+        <mysql.connector.version>8.0.13</mysql.connector.version>
+
+        <commons-lang3.version>3.9</commons-lang3.version>
+        <commons-collections4.version>4.3</commons-collections4.version>
+        <commons-beanutils.version>1.9.3</commons-beanutils.version>
+        <commons-io.version>2.6</commons-io.version>
+
+        <wiremock.version>2.23.2</wiremock.version>
+        <!--
+        <boot.admin.client>2.1.2</boot.admin.client>
+        <boot.admin.client>2.1.2</boot.admin.client>
+                &lt;!&ndash; spring boot、spring cloud &ndash;&gt;
+                &lt;!&ndash;&ndash;&gt;
+                <zipkin.version>2.11.3</zipkin.version>
+
+                &lt;!&ndash; common&ndash;&gt;
+
+
+                <pagehelper.version>1.2.10</pagehelper.version>
+                <poi.version>3.9</poi.version>
+                <xmlbeans.version>2.3.0</xmlbeans.version>
+                <hutool.version>4.5.0</hutool.version>
+                <jasypt.version>1.18</jasypt.version>
+                <kaptcha.version>0.0.9</kaptcha.version>
+
+                <docker.maven.verion>1.0.0</docker.maven.verion>
+                <docker.registry>registry.cn-hangzhou.aliyuncs.com</docker.registry>
+                <scanner.maven.version>3.3.0.603</scanner.maven.version>
+                -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <qingyejiazhu.security.version>1.0-SNAPSHOT</qingyejiazhu.security.version>
     </properties>
+    <!-- Inherit defaults from Spring Boot -->
+    <!-- Inherit defaults from Spring Boot -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>${spring-boot.version}</version>
+    </parent>
     <modules>
         <module>security-core</module>
         <module>security-browser</module>
         <module>security-app</module>
         <module>security-demo</module>
         <module>security-authorize</module>
+        <module>common-crm</module>
     </modules>
 
     <dependencyManagement>
@@ -50,43 +107,43 @@
             <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
-                <version>3.9</version>
+                <version>${commons-lang3.version}</version>
             </dependency>
             <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-collections4 -->
             <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-collections4</artifactId>
-                <version>4.3</version>
+                <version>${commons-collections4.version}</version>
             </dependency>
             <!-- https://mvnrepository.com/artifact/commons-beanutils/commons-beanutils -->
             <dependency>
                 <groupId>commons-beanutils</groupId>
                 <artifactId>commons-beanutils</artifactId>
-                <version>1.9.3</version>
+                <version>${commons-beanutils.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.springframework.social</groupId>
                 <artifactId>spring-social-config</artifactId>
-                <version>1.1.6.RELEASE</version>
+                <version>${spring-social-config.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.springframework.social</groupId>
                 <artifactId>spring-social-core</artifactId>
-                <version>1.1.6.RELEASE</version>
+                <version>${spring-social-core.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.springframework.social</groupId>
                 <artifactId>spring-social-security</artifactId>
-                <version>1.1.6.RELEASE</version>
+                <version>${spring-social-security}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.springframework.social</groupId>
                 <artifactId>spring-social-web</artifactId>
-                <version>1.1.6.RELEASE</version>
+                <version>${spring-social-web}</version>
             </dependency>
 
             <!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui -->
@@ -99,9 +156,30 @@
             <dependency>
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-swagger2</artifactId>
-                <version>2.9.2</version>
+                <version>${swagger.version}</version>
             </dependency>
-
+            <!--MySQL-->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.connector.version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/com.alibaba/druid -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${commons-io.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.tomakehurst</groupId>
+                <artifactId>wiremock</artifactId>
+                <version>${wiremock.version}</version>
+            </dependency>
         </dependencies>
 
     </dependencyManagement>
@@ -115,8 +193,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
                 <configuration>
-                    <source>12</source>
-                    <target>12</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
