@@ -37,7 +37,7 @@
         <hibernate-validator.version>6.0.14.Final</hibernate-validator.version>
         <mybatis.version>2.0.1</mybatis.version>
         <druid.version>1.1.20</druid.version>
-        <mysql.connector.version>8.0.13</mysql.connector.version>
+        <mysql.connector.version>8.0.16</mysql.connector.version>
 
         <commons-lang3.version>3.9</commons-lang3.version>
         <commons-collections4.version>4.3</commons-collections4.version>
